@@ -217,10 +217,10 @@ is the length of the corresponding sub-array in `values`. If
 `sizes[3]==10`, for example, then `values[3]` will be an array of 10
 integers.
 
-*Note how inherently icky it is to have to pass all this bookkeeping
+_Note how inherently icky it is to have to pass all this bookkeeping
 information around, and how many wonderfully unpleasant errors can
 result from doing this incorrectly. It's a **lot** safer if arrays know
-how big they are.*
+how big they are._
 
 `array_merge` should then generate a sorted list (small to large) of the
 unique values (i.e., no duplicates) in `values`. Since we haven't yet
