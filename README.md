@@ -1,3 +1,14 @@
+* [Background](#background)
+ * [Testing and the CMockery framework](#testing-and-the-cmockery-framework)
+ * [Getting started](#getting-started)
+* [The problems](https://github.umn.edu/UMM-CSci-Systems/C-Lab-Starter/blob/master/README.md#the-problems)
+ * Fixing palindromes
+ * Disemvowel
+ * Mergesort
+ * Array merge
+
+---
+
 # Background
 
 This lab is a collection of several C programming exercises with an
