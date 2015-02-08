@@ -98,16 +98,6 @@ information to be included in the executable, however, which can be
 *extremely* helpful when using tools like `valgrind` or the
 `gdb` debugger.
 
-:bangbang: You'll get one or more (possibly several) warnings of the
-form 
-``` 
-foo_test.c:52: warning: initialization from incompatible pointer type 
-``` 
-These are due to an issue in CMockery that isn't
-easy to work around, so just ignore them. This is not a license to
-ignore all warnings! Just ignore these from the code that you've been
-given.
-
 ---
 
 # The problems
