@@ -118,6 +118,21 @@ given.
 
 # The problems
 
+:bangbang: Remember: For each problem you should at a minimum
+* Pass our tests, and 
+* Have _no_ memory leaks, as confirmed by `valgrind`.
+* Remove any print statements that you used to debug your code before you turn it in.
+
+Also, please don't lose your brains and forget good programming practices just because you're working in a new language. C can be quite difficult to read under the best of circumstances, and using miserable names like `res`, `res2`, and `res3` doesn't help. *Use functions* to break up complicated bits of logic; it's really not fun when a group turns in a solution that is one huge function, especially when there are several instances of repeated logic.
+
+Some things to watch our for:
+* In the past there has been strong inverse correlation between length
+and correctness on these problem. If you find yourself wandering off into 2
+or (especially!) 3 pages of code for any of these, you've likely lost the plot
+and should probably ask for some help.
+* Make sure you initialize all variables (including variables used to index arrays in loops). C won't give you an error if you fail to initialize something, and sometimes you can get lucky and your tests will accidentally pass because, at least that one time, you happened to get the "right" initial value. That doesn't mean your code is correct, though.
+* Make sure you allocate space for the null terminator `\0` when allocating space for strings.
+
 ## Fixing palindromes
 
 Before you start writing your own C code, we'll start by using valgrind
