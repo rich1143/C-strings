@@ -17,14 +17,8 @@ introduction to a tool for finding memory leaks, the second is a simple
 exercise on 1-D arrays of characters, and the last is a more complex
 array-of-array problem where I give you much less to begin with.
 
-I used essentially the same lab in previous years, and [posted some
-comments](UMMCSci.CLabNotes) based on the work they turned in. Some of
-these might be helpful, so you might want to have a look. They tend to
-come down to "don't forget how to program cleanly just because you're
-writing C". So don't!
-
 For more information (including information on how to use ```valgrind```), see
-the [Lab3 pre-lab](Lab3Prelab).
+the [Lab3 pre-lab](https://wiki.umn.edu/UMMCSci/CSci3401f13/Lab3Prelab).
 
 ## Testing and the CMockery framework
 
