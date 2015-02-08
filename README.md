@@ -1,17 +1,3 @@
-Lab 3 starter 
-=============
-
-The starter code for Lab 3: C and memory management. This includes the
-starter code, tests, and the necessary CMockery include file (in
-```include```) and library file (in ```lib```).
-
-The CMockery files come from [building the library from Google
-Code](<https://code.google.com/p/cmockery/>) and were built 64-bit FC18
-Linux boxes. If you want to use these tests on a different architecture
-you'll need to download and build the library for your gear.
-
----
-
 # Background
 
 This lab is a collection of several C programming exercises with an
@@ -35,7 +21,11 @@ Each of these exercises comes with a set of tests implemented using [the
 CMockery testing framework for C](http://code.google.com/p/cmockery/).
 You won't have to learn anything about the CMockery framework, but you
 will need to add some components to your compilation instructions to
-include the CMockery library so the tests actually run.
+include the CMockery library so the tests actually run. 
+The CMockery files in the `lib` directory
+were built for 64-bit
+Linux boxes (FC18). If you want to use these tests on a different architecture
+you'll need to download and build the library for your gear.
 
 I think the tests are pretty reasonable, but I make **no** promises that
 they are in any way complete. Obviously you want your code to pass at
@@ -234,5 +224,5 @@ the array without messing with that important first element.
 
 ---
 
--- Main.NicMcPhee - 19 Sep 2011\<br\> -- Main.VincentBorchardt - 21 Jun
-2012\<br\> -- Main.lamberty - 18 Sep 2012
+People that contributed to this write-up before the project was moved
+to Github included Nic McPhee, Vincent Borchardt, and KK Lamberty.
