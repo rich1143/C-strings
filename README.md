@@ -160,8 +160,11 @@ twice.
 ## Mergesort
 
 Your task here is to implement a well known sorting algorithm in C,
-e.g., <span class="twiki-macro CODE">C</span> void mergesort(int size,
-int values[]); <span class="twiki-macro ENDCODE"></span> This is a
+e.g.,
+```C
+void mergesort(int size, int values[]);
+```
+This is a
 destructive sorting operation, and should alter the array that it's
 given. Note that since C doesn't know how large arrays are, we pass in
 the size as an argument.
@@ -169,9 +172,7 @@ the size as an argument.
 To simplify the process, I've provided you with [Java implementations of
 Quicksort and
 Mergesort](NicMcPhee.JavaImplementationsOfQuicksortAndMergesort) that
-you can use as models. Those implementations are [here on the
-wiki](NicMcPhee.JavaImplementationsOfQuicksortAndMergesort), and can
-also be found in `~mcphee/pub/CSci3401/SortingInJava`. I strongly
+you can use as models. I strongly
 recommend you take advantage of these both because it will help ensure
 that you focus on the C issues on these problems and because it'll make
 them easier to grade. (Having to figure out some crazy, unexpected
