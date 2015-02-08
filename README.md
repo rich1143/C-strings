@@ -127,6 +127,8 @@ and should probably ask for some help.
 * Make sure you initialize all variables (including variables used to index arrays in loops). C won't give you an error if you fail to initialize something, and sometimes you can get lucky and your tests will accidentally pass because, at least that one time, you happened to get the "right" initial value. That doesn't mean your code is correct, though.
 * Make sure you allocate space for the null terminator `\0` when allocating space for strings.
 
+[There are more comprehensive tips and suggestions here.](https://github.umn.edu/UMM-CSci-Systems/C-Lab-Starter/blob/master/Tips_and_suggestions.md)
+
 ## Fixing palindromes
 
 Before you start writing your own C code, we'll start by using valgrind
