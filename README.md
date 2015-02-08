@@ -66,44 +66,48 @@ particular order, however, and it would be far better to move on to the
 next one rather than get buried in one and not make any progress.
 
 The basic structure for each project is (for an imaginary project
-```foo```):
+`foo`):
 
--   ```foo.h```, which specifies the name, arguments, and return
+-   `foo.h`, which specifies the name, arguments, and return
     type of the function you're supposed to write.
     -   In every case we wrote one or more helper functions, but these
-        don't have to be included in the ```.h``` file unless you
+        don't have to be included in the `.h` file unless you
         want to include them in the tests.
--   ```foo\_test.c```, which is the test file we wrote using
+-   `foo_test.c`, which is the test file we wrote using
     CMockery.
 
-There are also top level ```include``` and ```lib```
+There are also top level `include` and `lib`
 directories that contain:
 
--   ```include/cmockery.h```, which is the CMockery include file
+-   `include/cmockery.h`, which is the CMockery include file
     that the test file includes.
--   ```lib/libcmockery\_la-cmockery.o```, which is the object file
+-   `lib/libcmockery_la-cmockery.o`, which is the object file
     containing the compiled versions of all the CMockery routines.
 
-Your job then is typically to write ```foo.c```, which provides
-the implementation of the function listed in ```foo.h```. To
+Your job then is typically to write `foo.c`, which provides
+the implementation of the function listed in `foo.h`. To
 compile the test code (with all the CMockery stuff) use the following:
-```bash gcc -Wall -g -o foo\_test foo.c foo\_test.c
-../lib/libcmockery\_la-cmockery.o ``` (where you replace
-```foo``` with the appropriate name for the project you're working
-on). The ```-g``` flag is something we haven't talked about and
+```bash 
+gcc -Wall -g -o foo_test foo.c foo_test.c ../lib/libcmockery_la-cmockery.o 
+``` 
+(where you replace `foo` with the appropriate name for the project you're working
+on). The `-g` flag is something we haven't talked about and
 not strictly necessary; it causes a variety of useful debugging
 information to be included in the executable, however, which can be
-*extremely* helpful when using tools like ```valgrind``` or the
-```gdb``` debugger.
+*extremely* helpful when using tools like `valgrind` or the
+`gdb` debugger.
 
 :bangbang: You'll get one or more (possibly several) warnings of the
-form ``` foo\_test.c:52: warning: initialization from incompatible
-pointer type ``` These are due to an issue in CMockery that isn't
+form 
+``` 
+foo_test.c:52: warning: initialization from incompatible pointer type 
+``` 
+These are due to an issue in CMockery that isn't
 easy to work around, so just ignore them. This is not a license to
 ignore all warnings! Just ignore these from the code that you've been
 given.
 
-------------------------------------------------------------------------
+---
 
 # The problems
 
@@ -118,29 +122,26 @@ doing the more obvious thing of returning a boolean) returns the string
 "Yes" or "No". The file `palindrome_test.c` uses the CMockery library
 mentioned above to test that the `palindrome` function works. You should
 copy that `palindrome` directory into your project and compile the
-program: <span class="twiki-macro CODE">bash</span> gcc -Wall -g -o
-palindrome\_test palindrome.c palindrome\_test.c
-../lib/libcmockery\_la-cmockery.o <span
-class="twiki-macro ENDCODE"></span> Run the resulting executable and
-verify that all six tests pass. <span class="twiki-macro X"></span> I
-would commit your code now ***before*** you've changed anything. It make
-make it easier to see what you've done later.
+program: 
+```bash
+gcc -Wall -g -o palindrome_test palindrome.c palindrome_test.c ../lib/libcmockery_la-cmockery.o
+```
+Run the resulting executable and
+verify that all six tests pass.
 
 Look at the code a little and see if you can spot any obvious memory
 leaks. Then run valgrind on your executable and see what it tells you
 about memory leaks in this code. Then go through and fix the memory
-leaks so that valgrind is happy. <span class="twiki-macro X"></span>
-Document what you change in the file README.txt
+leaks so that valgrind is happy.
 
 ## Disemvowel
 
 "Disemvoweling" is the act of removing all the vowels (a, e, i, o, and
 u, both upper and lowercase) from a piece of text. Your task here is to
 write a function
-
-<span class="twiki-macro CODE">C</span> char\* disemvowel(char\* str);
-<span class="twiki-macro ENDCODE"></span>
-
+```C
+char* disemvowel(char* str);
+```
 that takes a null-terminated string, and returns a new null-terminated
 string (i.e., it doesn't mangle the original one) that contains the same
 characters in the same order, minus all the vowels. Note that resulting
@@ -151,9 +152,9 @@ might find valgrind useful for helping check for leaks.
 
 We've provided a `main.c` which you can compile instead of
 `disemvowel_test.c` if you want to try out disemvoweling different
-strings from the command line. <span class="twiki-macro X"></span> You
-need to make sure \_you only compile one of `main.c` and
-`disemvowel_test.c=_, otherwise you'll get a compiler error about trying to define =main()`
+strings from the command line. :bangbang: You
+need to make sure you only compile one of `main.c` and
+`disemvowel_test.c`, otherwise you'll get a compiler error about trying to define `main()`
 twice.
 
 ## Mergesort
