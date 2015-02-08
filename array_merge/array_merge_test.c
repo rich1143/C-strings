@@ -15,7 +15,7 @@ bool arrays_match(int size, int a[], int b[]) {
   return true;
 }
 
-void test_empty_list(void) {
+void test_empty_list() {
   int* a[] = { };
   int sizes[] = { };
   int expected[] = { 0 };
@@ -25,7 +25,7 @@ void test_empty_list(void) {
   assert_true(arrays_match(1, result, expected));
 }
 
-void test_singleton_list(void) {
+void test_singleton_list() {
   int num_arrays = 1;
   int sizes[] = { 1 };
   int a0[] = { 5 };
@@ -37,7 +37,7 @@ void test_singleton_list(void) {
   assert_true(arrays_match(2, result, expected));
 }
 
-void test_one_longer_list(void) {
+void test_one_longer_list() {
   int num_arrays = 1;
   int sizes[] = { 10 };
   int a0[] = { 3, 2, 0, 5, 8, 9, 6, 3, 2, 0 };
@@ -49,7 +49,7 @@ void test_one_longer_list(void) {
   assert_true(arrays_match(8, result, expected));
 }
 
-void test_multiple_copies_of_longer_list(void) {
+void test_multiple_copies_of_longer_list() {
   int num_arrays = 10;
   int sizes[] = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
   int a0[] = { 3, 2, 0, 5, 8, 9, 6, 3, 2, 0 };
@@ -61,7 +61,7 @@ void test_multiple_copies_of_longer_list(void) {
   assert_true(arrays_match(8, result, expected));
 }
 
-void test_multiple_copies_of_longer_list_different_orders(void) {
+void test_multiple_copies_of_longer_list_different_orders() {
   int num_arrays = 9;
   int sizes[] = { 10, 10, 10, 10, 10, 10, 10, 10, 10 };
   int a0[] = { 3, 2, 0, 5, 8, 9, 6, 3, 2, 0 };
@@ -75,7 +75,7 @@ void test_multiple_copies_of_longer_list_different_orders(void) {
   assert_true(arrays_match(8, result, expected));
 }
 
-void test_different_sizes(void) {
+void test_different_sizes() {
   int num_arrays = 11;
   int sizes[num_arrays];
   int* a[num_arrays];
@@ -95,7 +95,7 @@ void test_different_sizes(void) {
   assert_true(arrays_match(11, result, expected));
 }
 
-void test_different_sizes_reversed(void) {
+void test_different_sizes_reversed() {
   int num_arrays = 11;
   int sizes[num_arrays];
   int* a[num_arrays];

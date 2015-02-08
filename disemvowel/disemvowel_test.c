@@ -5,29 +5,29 @@
 #include "../include/cmockery.h"
 #include "disemvowel.h"
 
-void test_empty_str(void) {
+void test_empty_str() {
   assert_string_equal("", disemvowel(""));
 }
 
-void test_no_vowels(void) {
+void test_no_vowels() {
   assert_string_equal("pqrst", disemvowel("pqrst"));
 }
 
-void test_only_vowels(void) {
+void test_only_vowels() {
   assert_string_equal("", disemvowel("aeiouAEIOUOIEAuoiea"));
 }
 
-void test_my_name(void) {
+void test_my_name() {
   assert_string_equal("Nchls Frtg McPh", 
 		      disemvowel("Nicholas Freitag McPhee"));
 }
 
-void test_punctuation(void) {
+void test_punctuation() {
   assert_string_equal("n (nxplnd) lphnt!", 
 		      disemvowel("An (Unexplained) Elephant!"));
 }
 
-void test_long_string(void) {
+void test_long_string() {
   char* str;
   int size;
   int i;

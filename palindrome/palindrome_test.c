@@ -13,30 +13,30 @@ void not_palindrome(char* str) {
   assert_string_equal(palindrome(str), "No");  
 }
 
-void test_empty_str(void) {
+void test_empty_str() {
   is_palindrome("");
 }
 
-void test_singleton(void) {
+void test_singleton() {
   is_palindrome("a");
   is_palindrome("b");
   is_palindrome("c");
 }
 
-void test_length_two(void) {
+void test_length_two() {
   is_palindrome("aa");
   is_palindrome("bb");
   not_palindrome("ab");
 }
 
-void test_length_three(void) {
+void test_length_three() {
   is_palindrome("aaa");
   is_palindrome("bab");
   not_palindrome("abc");
   not_palindrome("abb");
 }
 
-void test_length_four(void) {
+void test_length_four() {
   is_palindrome("aaaa");
   is_palindrome("baab");
   not_palindrome("abcd");
@@ -45,7 +45,7 @@ void test_length_four(void) {
   not_palindrome("abca");
 }
 
-void test_long_strings(void) {
+void test_long_strings() {
   is_palindrome("aaaaaaaaaaa");
   is_palindrome("aaaaaaaaaaaa");
   is_palindrome("abcdefgfedcba");
