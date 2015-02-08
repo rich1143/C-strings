@@ -187,16 +187,18 @@ friend.
 
 ## Array merge
 
-Your task here is to implement <span class="twiki-macro CODE">C</span>
-int\* array\_merge(int num\_arrays, int\* sizes, int\*\* values); <span
-class="twiki-macro ENDCODE"></span> Here `values` is an array of arrays
+Your task here is to implement 
+```C
+int* array_merge(int num_arrays, int* sizes, int** values);
+```
+Here `values` is an array of arrays
 of integers, where each of the sub-arrays can have different length (so
 it's not really a standard 2-D array). Because C doesn't know the size
 of arrays, we need to provide all that information in the arguments:
 `num_arrays` is the number of arrays in `values`, and `sizes` is an
 array of ints that should also have `num_arrays` entries, each of which
 is the length of the corresponding sub-array in `values`. If
-`sizes[3]=10`, for example, then `values[3]` will be an array of 10
+`sizes[3]==10`, for example, then `values[3]` will be an array of 10
 integers.
 
 *Note how inherently icky it is to have to pass all this bookkeeping
@@ -215,14 +217,14 @@ the array to determine how long the array actually is.
 
 As a more complete example, consider the following input:
 
--   =num\_arrays = 3=
--   =sizes = [4, 2, 5]=
--   =values = [[3, 2, 0, 5], [8, 9], [6, 3, 2, 0, 5]]=
+-   `num_arrays = 3`
+-   `sizes = [4, 2, 5]`
+-   `values = [[3, 2, 0, 5], [8, 9], [6, 3, 2, 0, 5]]`
 
 Then the result should be `[7, 0, 2, 3, 5, 6, 8, 9]`.
 
 There are ways to write this that waste a lot of memory when the set of
-unique values is much smaller than the number of entries in =values=;
+unique values is much smaller than the number of entries in `values`;
 your solution should make a point of freeing up any unused memory.
 
 You might also find your sorting algorithm from above useful in sorting
