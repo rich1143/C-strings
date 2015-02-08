@@ -114,14 +114,14 @@ given.
 ## Fixing palindromes
 
 Before you start writing your own C code, we'll start by using valgrind
-to identify memory leaks in an existing program. In
-`~mcphee/pub/CSci3401/Lab3/palindrome` there is a program that
+to identify memory leaks in an existing program. In the
+`palindrome` directory there is a program that
 determines (in sort of a dumb way) if a string is a palindrome. The file
 `palindrome.c` has the code that checks for palindromes and (instead of
 doing the more obvious thing of returning a boolean) returns the string
 "Yes" or "No". The file `palindrome_test.c` uses the CMockery library
 mentioned above to test that the `palindrome` function works. You should
-copy that `palindrome` directory into your project and compile the
+go into that `palindrome` directory in your project and compile the
 program: 
 ```bash
 gcc -Wall -g -o palindrome_test palindrome.c palindrome_test.c ../lib/libcmockery_la-cmockery.o
@@ -130,9 +130,9 @@ Run the resulting executable and
 verify that all six tests pass.
 
 Look at the code a little and see if you can spot any obvious memory
-leaks. Then run valgrind on your executable and see what it tells you
+leaks. Then run `valgrind` on your executable and see what it tells you
 about memory leaks in this code. Then go through and fix the memory
-leaks so that valgrind is happy.
+leaks so that `valgrind` is happy (and the tests still pass).
 
 ## Disemvowel
 
