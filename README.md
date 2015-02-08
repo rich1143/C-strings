@@ -38,14 +38,14 @@ were built for 64-bit
 Linux boxes (FC18). If you want to use these tests on a different architecture
 you'll need to download and build the library for your gear.
 
-I think the tests are pretty reasonable, but I make **no** promises that
+We think the tests are pretty reasonable, but make **no** promises that
 they are in any way complete. Obviously you want your code to pass at
 least these tests, but you shouldn't assume that passing these tests
-guarantees any kind of correctness. You're welcome to read the tests (I
-think the basics of CMockery are pretty readable) and extend them if
-you'd like. I wouldn't change the tests I gave you, though; we'll test
-your code against *those* tests, and if they don't pass that's a Bad
-Thing.
+guarantees any kind of correctness. You're welcome to read the tests 
+and extend them if
+you'd like. Don't change any of the given tests, though; we'll test
+your code against *those* tests, and it's a Bad
+Thing if they don't pass those.
 
 On a related note, don't over focus on the tests. CMockery frankly
 doesn't give you super useful error messages or info when things fail.
@@ -57,10 +57,16 @@ but it may be *awfully* useful while you're exploring.
 
 ## Getting started
 
+<!--
 Your group should choose a team name and add it to the list of groups
-below. You should then fork [the starter repo on
-Github](https://github.com/UMM-CSci-3401-F13/Lab_3_starter) to get the
-starter code for all four projects. There are several directories there,
+below. You should then fork this repo to get the
+starter code for all four projects, and let us know where your group's
+"official" fork (the one you want graded) is by including a link to it
+in the list of groups below. 
+-->
+You should then fork this repo to get the
+starter code.
+There are several directories there,
 one for each project. We would recommend doing them in the order listed
 below; there's no overwhelming reason that you need to do them in any
 particular order, however, and it would be far better to move on to the
