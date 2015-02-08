@@ -12,7 +12,7 @@ There was a strong inverse correlation between length and
     well onto the second page, where the correct ones almost all fit
     nicely on a single page. This may be partly due to the increased
     tendency of broken programs to have print code and commented code,
-    but I think it more generally reflects a lack of clarity.
+    but probably more generally reflects a lack of clarity.
 
 Several people got lost in their array indices, and some remained
     lost there throughout. This is a nice example of a problem where
@@ -46,20 +46,19 @@ Several groups had off-by-one errors where they weren't allocating
     where the null terminator would need to be, but which we never
     allocated space for.
 
-A number of groups had a subtle mistake where they 1 Dynamically
-    allocated an array that was potentially empty (=int \*a = calloc(n,
-    sizeof(int));=). 1 Copied some data into that array using a loop
-    that (correctly) did nothing if *n=0*. 1 Accessed the first item in
-    the array, which might not actually be there (=int i = a[0];=). 1
-    Protected the remainder of the code (through an `if` or loop with
-    appropriate bounds) so that the value taken from the array was never
-    *used* if *n=0*.
-This is broken since the line =int i = a[0];= is accessing a
+A number of groups had a subtle mistake where they 
+
+1. Dynamically allocated an array that was potentially empty: `int *a = calloc(n, sizeof(int));`. 
+1. Copied some data into that array using a loop that (correctly) did nothing if *n=0*. 
+1. Accessed the first item in the array, which might not actually be there, e.g., `int i = a[0];`. 
+1. Protected the remainder of the code (through an `if` or loop with appropriate bounds) so that the value taken from the array was never *used* if n=0.
+
+This is broken since the line `int i = a[0];` is accessing a
 memory location that hasn't been allocated to your program. It's
 probably a legal memory address, though, so it's unlikely to actually
 *fail*. And since the subsequent guards ensure that you never actually
 use the (probably random) value that you got back, there probably aren't
-any tests that will actually catch the mistake. Luckily valgrind catches
+any tests that will actually catch the mistake. Luckily `valgrind` catches
 it, complaining about an illegal read.
 
 # Style and clarity: The big issues
@@ -77,7 +76,7 @@ Initialize variables where you use them. Several people declared
     lessen this problem - see below.)
 
 Use functions to break things up! Many of the submissions have
-    `array_merge` as a single page+ long function. Several people have a
+    `array_merge` as a single function that went on for over a page. Several people have a
     second function that looks for duplicates, which is nice, but that
     was about it by way of modularity for most folks. Remember the bit
     about C being a challenging language, and not making it worse?
@@ -99,12 +98,12 @@ You should remove printing code from "production" code (i.e.,
 Don't `#include` `.c` files; you want to compile `.c` files
     separately and link them in. (If this is confusing or unclear to
     you, then you definitely should ask a question about it.) Because
-    `#include` is a purely textual operation, it will *work* on \*.c
-    files, or \*.java, or \*.rb, or random JPEGs, but most of those
+    `#include` is a purely textual operation, it will *work* on `*.c`
+    files, or `*.java`, or `*.rb`, or random JPEGs, but most of those
     aren't good ideas. What one typically does is *only* include
-    the \*.h files which provide the headers, but none of the
-    implementation details. You then compile all the \*.c files (include
-    "bar.c"), as they provided the needed implementations, and the
+    the `*.h` files which provide the headers, but none of the
+    implementation details. You then compile all the `*.c` files, 
+    as they provided the needed implementations, and the
     linker pulls them all together into a working executable.
 
 Pay attention to warnings, and ask if you don't understand what it's
@@ -120,7 +119,7 @@ prone.
 Several people did a variant of linear search to see if an item was
     duplicated. Use the fact that your array is sorted (or go ahead and
     sort it if it isn't) to simplify this (and speed it up, but the
-    simplicity is the bigger issue for me).
+    simplicity is arguably the bigger issue).
     
 ---
 
