@@ -8,12 +8,9 @@ The CMockery files come from [building the library from Google Code](https://cod
 64-bit FC18 Linux boxes. If you want to use these tests on a different architecture you'll need to download and build
 the library for your gear.
 
-<hr>
+---
 
-
-%TOC%
-
----++ Background
+# Background
 
 This lab is a collection of several C programming exercises with an emphasis on arrays, pointers, and memory management. The first is an introduction to a tool for finding memory leaks, the second is a simple exercise on 1-D arrays of characters, and the last is a more complex array-of-array problem where I give you much less to begin with.
 
@@ -21,45 +18,44 @@ I used essentially the same lab in previous years, and [[UMMCSci.CLabNotes][post
 
 For more information (including information on how to use valgrind), see the [[Lab3Prelab][Lab3 pre-lab]].
 
----+++ Testing and the CMockery framework
+## Testing and the CMockery framework
 
 Each of these exercises comes with a set of tests implemented using [[http://code.google.com/p/cmockery/][the CMockery testing framework for C]].  You won't have to learn anything about the CMockery framework, but you will need to add some components to your compilation instructions to include the CMockery library so the tests actually run.
 
 I think the tests are pretty reasonable, but I make *no* promises that they are in any way complete.  Obviously you want your code to pass at least these tests, but you shouldn't assume that passing these tests guarantees any kind of correctness.  You're welcome to read the tests (I think the basics of CMockery are pretty readable) and extend them if you'd like.  I wouldn't change the tests I gave you, though; we'll test your code against _those_ tests, and if they don't pass that's a Bad Thing.
 
-On a related note, don't over focus on the tests. CMockery frankly doesn't give you super useful error messages or info when things fail.  You can get more information using the =gdb= debugger, but that's not trivial to use.  In many cases it will be as or more useful to write little bits of code that print out useful information from your code to help with debugging.  You'll eventually want to remove all that, but it may be _awfully_ useful while you're exploring.
+On a related note, don't over focus on the tests. CMockery frankly doesn't give you super useful error messages or info when things fail.  You can get more information using the ```gdb``` debugger, but that's not trivial to use.  In many cases it will be as or more useful to write little bits of code that print out useful information from your code to help with debugging.  You'll eventually want to remove all that, but it may be _awfully_ useful while you're exploring.
 
+## Getting started
 
----+++ Getting started
+Your group should choose a team name and add it to the list of groups below.  You should then fork [[https://github.com/UMM-CSci-3401-F13/Lab_3_starter][the starter repo on Github]] to get the starter code for all four projects.  There are several directories there, one for each project.  We would recommend doing them in the order listed below; there's no overwhelming reason that you need to do them in any particular order, however, and it would be far better to move on to the next one rather than get buried in one and not make any progress.
 
-Your group should choose a team name and add it to the list of groups below.  You should then fork [[https://github.com/UMM-CSci-3401-F13/Lab_3_starter][the starter repo on Github]] to get the starter code for all four projects.  There are several directories there, one for each project.  I would recommend doing them in the order listed below; there's no overwhelming reason that you need to do them in any particular order, however, and it would be far better to move on to the next one rather than get buried in one and not make any progress.
+The basic structure for each project is (for an imaginary project ```foo```):
+   * ```foo.h```, which specifies the name, arguments, and return type of the function you're supposed to write.
+      * In every case we wrote one or more helper functions, but these don't have to be included in the ```.h``` file unless you want to include them in the tests.
+   * ```foo_test.c```, which is the test file we wrote using CMockery.
 
-The basic structure for each project is (for an imaginary project =foo=):
-   * =foo.h=, which specifies the name, arguments, and return type of the function you're supposed to write.
-      * In every case I wrote one or more helper functions, but these don't have to be included in the =.h= file unless you want to include them in the tests.
-   * =foo_test.c=, which is the test file I wrote using CMockery.
+There are also top level ```include``` and ```lib``` directories that contain:
+   * ```include/cmockery.h```, which is the CMockery include file that the test file includes.
+   * ```lib/libcmockery_la-cmockery.o```, which is the object file containing the compiled versions of all the CMockery routines.
 
-There are also top level =include= and =lib= directories that contain:
-   * =include/cmockery.h=, which is the CMockery include file that the test file includes.
-   * =lib/libcmockery_la-cmockery.o=, which is the object file containing the compiled versions of all the CMockery routines.
-
-Your job then is typically to write =foo.c=, which provides the implementation of the function listed in =foo.h=.  To compile the test code (with all the CMockery stuff) use the following:
-<pre>
+Your job then is typically to write ```foo.c```, which provides the implementation of the function listed in ```foo.h```.  To compile the test code (with all the CMockery stuff) use the following:
+```bash
    gcc -Wall -g -o foo_test foo.c foo_test.c ../lib/libcmockery_la-cmockery.o
-</pre>
-(where you replace =foo= with the appropriate name for the project you're working on).  The =-g= flag is something we haven't talked about and not strictly necessary; it causes a variety of useful debugging information to be included in the executable, however, which can be _extremely_ helpful when using tools like =valgrind= or the =gdb= debugger.
+```
+(where you replace ```foo``` with the appropriate name for the project you're working on).  The ```-g``` flag is something we haven't talked about and not strictly necessary; it causes a variety of useful debugging information to be included in the executable, however, which can be _extremely_ helpful when using tools like ```valgrind``` or the ```gdb``` debugger.
 
-%X% You'll get one or more (possibly several) warnings of the form
-<pre>
+:bangbang: You'll get one or more (possibly several) warnings of the form
+```
 foo_test.c:52: warning: initialization from incompatible pointer type
-</pre>
+```
 These are due to an issue in CMockery that isn't easy to work around, so just ignore them. This is not a license to ignore all warnings! Just ignore these from the code that you've been given.
 
 ---
 
----++ The problems
+# The problems
 
----+++ Fixing palindromes
+## Fixing palindromes
 
 Before you start writing your own C code, we'll start by using valgrind to identify memory leaks in an existing program. In =~mcphee/pub/CSci3401/Lab3/palindrome= there is a program that determines (in sort of a dumb way) if a string is a palindrome. The file =palindrome.c= has the code that checks for palindromes and (instead of doing the more obvious thing of returning a boolean) returns the string "Yes" or "No". The file =palindrome_test.c= uses the CMockery library mentioned above to test that the =palindrome= function works. You should copy that =palindrome= directory into your project and compile the program:
 %CODE{"bash"}%
@@ -69,7 +65,7 @@ Run the resulting executable and verify that all six tests pass. %X% I would com
 
 Look at the code a little and see if you can spot any obvious memory leaks. Then run valgrind on your executable and see what it tells you about memory leaks in this code. Then go through and fix the memory leaks so that valgrind is happy. %X% Document what you change in the file README.txt 
 
----+++ Disemvowel
+## Disemvowel
 
 "Disemvoweling" is the act of removing all the vowels (a, e, i, o, and u, both upper and lowercase) from a piece of text.  Your task here is to write a function
 
@@ -81,7 +77,7 @@ that takes a null-terminated string, and returns a new null-terminated string (i
 
 We've provided a =main.c= which you can compile instead of =disemvowel_test.c= if you want to try out disemvoweling different strings from the command line. %X% You need to make sure _you only compile one of =main.c= and =disemvowel_test.c=_, otherwise you'll get a compiler error about trying to define =main()= twice.
 
----+++ Mergesort
+## Mergesort
 
 Your task here is to implement a well known sorting algorithm in C, e.g.,
 %CODE{"C"}%
@@ -93,7 +89,7 @@ To simplify the process, I've provided you with [[NicMcPhee.JavaImplementationsO
 
 Common approaches to Mergesort require allocating temporary arrays; you should make a point of freeing these up when they're no longer needed, as you certainly wouldn't want a common operation like sorting to leak a bunch of memory every time it's called. Again, valgrind should be your friend.
 
----+++ Array merge
+## Array merge
 
 Your task here is to implement
 %CODE{"C"}%
@@ -117,7 +113,7 @@ You might also find your sorting algorithm from above useful in sorting your res
 
 ---
 
----++ The groups
+# The groups
 
 Remember to let us know what your group name is so that we can match names to groups on Github - you'll lose points if you don't. Thanks.
 
