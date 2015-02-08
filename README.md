@@ -185,10 +185,10 @@ destructive sorting operation, and should alter the array that it's
 given. Note that since C doesn't know how large arrays are, we pass in
 the size as an argument.
 
-To simplify the process, I've provided you with [Java implementations of
+To simplify the process, we've provided you with [Java implementations of
 Quicksort and
-Mergesort](NicMcPhee.JavaImplementationsOfQuicksortAndMergesort) that
-you can use as models. I strongly
+Mergesort](https://github.umn.edu/gist/mcphee/83e9818b21ef9cb3cde4) that
+you can use as models. We strongly
 recommend you take advantage of these both because it will help ensure
 that you focus on the C issues on these problems and because it'll make
 them easier to grade. (Having to figure out some crazy, unexpected
