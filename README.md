@@ -1,5 +1,6 @@
 * [Background](#background)
  * [Testing and the CMockery framework](#testing-and-the-cmockery-framework)
+ * [Fixing memory problems](#fixing-memory-problems)
  * [Getting started](#getting-started)
 * [The problems](#the-problems)
  * [Fixing palindromes](#fixing-palindromes)
@@ -49,15 +50,30 @@ write little bits of code that print out useful information from your
 code to help with debugging. You'll eventually want to remove all that,
 but it may be *awfully* useful while you're exploring.
 
+## Fixing memory problems
+
+Passing the tests is arguably just the first half of each of these problems,
+as it's entirely possible to pass the tests but still have substantial memory
+management problems. You could, for example, have an illegal memory access
+that passes the tests through happenstance, because the right value happens
+to be in the necessary location. Or you could have memory leaks because you
+never free up any of the memory you allocate while solving the problem in a
+manner that is otherwise entirely correct. This is where `valgrind` is extremely
+helpful, as it will identify these kinds
+of memory problems even if the tests pass. 
+
+:bangbang: One non-obvious, but important, place to look for memory leaks is 
+in the test code. If the test code calls some function `f()` that returns an
+array or string that is allocated somewhere in `f` (or a function `f` calls),
+then that memory is lost if the test code doesn't free up that returned array.
+So if `valgrind` says there's a leak where some memory is allocated in a function
+and then returned to the test code, then the fix is _in the test code_. In general
+we _don't_ encourage/want you to be changing the test code (you could always
+just change the test code to say everything passes!), but if the memory leaks
+to the test code, then that's where the fix has to be made.
+
 ## Getting started
 
-<!--
-Your group should choose a team name and add it to the list of groups
-below. You should then fork this repo to get the
-starter code for all four projects, and let us know where your group's
-"official" fork (the one you want graded) is by including a link to it
-in the list of groups below. 
--->
 You should then fork this repo to get the
 starter code.
 There are several directories there,
