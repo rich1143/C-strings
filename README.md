@@ -38,9 +38,11 @@ they are in any way complete. Obviously you want your code to pass at
 least these tests, but you shouldn't assume that passing these tests
 guarantees any kind of correctness. You're welcome to read the tests 
 and extend them if
-you'd like. Don't change any of the given tests, though; we'll test
-your code against *those* tests, and it's a Bad
-Thing if they don't pass those.
+you'd like. You may even need to make changes to the
+test code to handle memory leaks 
+[(see below)](https://github.com/UMM-CSci-Systems/C-Lab-Starter#fixing-memory-problems).
+Do be careful to not remove or weaken the tests, though; at a minimum you definitely
+want to be able to pass the tests as given.
 
 On a related note, don't over focus on the tests. CMockery frankly
 doesn't give you super useful error messages or info when things fail.
