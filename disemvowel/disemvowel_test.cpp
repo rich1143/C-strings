@@ -1,39 +1,36 @@
-#include <stdarg.h>
-#include <setjmp.h>
-#include <stdlib.h>
+#include <gtest/gtest.h>
 
-#include "../include/cmockery.h"
 #include "disemvowel.h"
 
-void test_empty_str() {
-  assert_string_equal("", disemvowel(""));
+TEST(Disemvowel, HandleEmptyString) {
+  ASSERT_STREQ("", disemvowel((char*) ""));
 }
 
-void test_no_vowels() {
-  assert_string_equal("pqrst", disemvowel("pqrst"));
+TEST(Disemvowel, HandleNoVowels) {
+  ASSERT_STREQ("pqrst", disemvowel((char*) "pqrst"));
 }
 
-void test_only_vowels() {
-  assert_string_equal("", disemvowel("aeiouAEIOUOIEAuoiea"));
+TEST(Disemvowel, HandleOnlyVowels) {
+  ASSERT_STREQ("", disemvowel((char*) "aeiouAEIOUOIEAuoiea"));
 }
 
-void test_my_name() {
-  assert_string_equal("Nchls Frtg McPh", 
-		      disemvowel("Nicholas Freitag McPhee"));
+TEST(Disemvowel, HandleMorrisMinnesota) {
+  ASSERT_STREQ("Mrrs, Mnnst",
+		      disemvowel((char*) "Morris, Minnesota"));
 }
 
-void test_punctuation() {
-  assert_string_equal("n (nxplnd) lphnt!", 
-		      disemvowel("An (Unexplained) Elephant!"));
+TEST(Disemvowel, HandlePunctuation) {
+  ASSERT_STREQ("n (nxplnd) lphnt!", 
+		      disemvowel((char*) "An (Unexplained) Elephant!"));
 }
 
-void test_long_string() {
+TEST(Disemvowel, HandleLongString) {
   char* str;
   int size;
   int i;
 
   size = 50000;
-  str = calloc(size, sizeof(char));
+  str = (char*) calloc(size, sizeof(char));
   str[0] = 'x';
   str[1] = 'y';
   str[2] = 'z';
@@ -42,19 +39,12 @@ void test_long_string() {
   }
   str[size-1] = '\0';
   
-  assert_string_equal("xyz", disemvowel(str));
+  ASSERT_STREQ("xyz", disemvowel(str));
 
   free(str);
 }
 
 int main(int argc, char* argv[]) {
-  UnitTest tests[] = {
-    unit_test(test_empty_str),
-    unit_test(test_no_vowels),
-    unit_test(test_only_vowels),
-    unit_test(test_my_name),
-    unit_test(test_punctuation),
-    unit_test(test_long_string)
-  };
-  return run_tests(tests);
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
