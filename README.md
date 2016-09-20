@@ -5,8 +5,6 @@
 * [The problems](#the-problems)
  * [Fixing palindromes](#fixing-palindromes)
  * [Disemvowel](#disemvowel)
- * [Mergesort](#mergesort)
- * [Array merge](#array-merge)
 
 ---
 
@@ -36,14 +34,6 @@ test code to handle memory leaks
 [(see "fixing memory problems" below)](#fixing-memory-problems).
 Do be careful to not remove or weaken the tests, though; at a minimum 
 you definitely want to be able to pass the tests as given.
-
-On a related note, don't over focus on the tests. `gtest` frankly
-doesn't give you super useful error messages or info when things fail.
-You can get more information using the `gdb` debugger, but
-that's not trivial to use. In many cases it will be as or more useful to
-write little bits of code that print out useful information from your
-code to help with debugging. You'll eventually want to remove all that,
-but it may be *awfully* useful while you're exploring.
 
 ## Fixing memory problems
 
@@ -214,8 +204,8 @@ write a function
 ```C
 char* disemvowel(char* str);
 ```
-that takes a null-terminated string, and returns a new null-terminated
-string (i.e., it doesn't mangle the original one) that contains the same
+that takes a null-terminated string, and returns a _new_ null-terminated
+string (i.e., it doesn't modify the original string) that contains the same
 characters in the same order, minus all the vowels. Note that resulting
 array of characters will need to be allocated, and will typically be
 shorter than the input string. It would be desirable to not waste memory
@@ -223,13 +213,7 @@ and only allocate what you actually need for the return string; you
 might find valgrind useful for helping check for leaks.
 
 We've provided a `main.c` which you can compile instead of
-`disemvowel_test.c` if you want to try out disemvoweling different
+`disemvowel_test.cpp` if you want to try out disemvoweling different
 strings from the command line. :bangbang: You
 need to make sure you only compile one of `main.c` and
-`disemvowel_test.c`, otherwise you'll get a compiler error about trying to define `main()`
-twice.
-
----
-
-People that contributed to this write-up before the project was moved
-to Github included Nic McPhee, Vincent Borchardt, and KK Lamberty.
+`disemvowel_test.c`, otherwise you'll get a compiler error about trying to define `main()` twice.
