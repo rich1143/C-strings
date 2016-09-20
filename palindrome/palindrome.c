@@ -14,7 +14,7 @@ char* str_reverse(char* str) {
     result[i] = str[len-i-1];
   }
   result[len] = '\0';
-  
+
   return result;
 }
 
@@ -46,5 +46,6 @@ char* palindrome(char* str) {
     answer[2] = '\0';
   }
 
+  free(rev);
   return answer;
 }
