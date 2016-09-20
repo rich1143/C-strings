@@ -92,7 +92,10 @@ part `foo`):
 -   `main.c`, which gives you a "main" function that you can use to
     run your code separate from the test code. You don't have to ever
     do this, but you might find it useful in debugging.
--   `foo_test.c`, which is the test file we wrote using `gtest`.
+-   `foo_test.cpp`, which is the test file we wrote using `gtest`. The
+    `.cpp` ending is because this is actually a C++ file not a strict
+    C file. That will affect how you compile the test code, but you
+    won't have to know/learn anything about C++ for this lab.
 
 Your job then is typically to complete or fix `foo.c`, which provides
 the implementation of the function listed in `foo.h`.
@@ -110,14 +113,18 @@ you're working on). If all goes well, that should generate an executable
 To compile the test code use the following:
 
 ```bash 
-gcc -Wall -g -o foo_test foo.c foo_test.c -lgtest 
-``` 
+g++ -Wall -g -o foo_test foo.c foo_test.cpp -lgtest 
+```
 
-The `-g` flag isn't strictly necessary; it causes a variety of useful 
-debugging information to be included in the executable, however, which 
-can be *extremely* helpful when using tools like `valgrind` or the
-`gdb` debugger. If you don't include it, for example, then those tools
-won't be able to report accurate or useful line numbers or function names.
+_Notice that this uses `g++` instead of `gcc`. This because the `gtest`
+is technically a C++ library, but it also works for "plain" C code, which
+is all we need it for here. The `-g` flag isn't strictly necessary; it 
+causes a variety of useful debugging information to be included in 
+the executable, however, which can be *extremely* helpful when using 
+tools like `valgrind` or the `gdb` debugger. If you don't include it, 
+for example, then those tools won't be able to report accurate or useful 
+line numbers or function names. The `-lgtest` tells the compiler to include
+the `gtest` library (that's the `-l` part) when generating the executable. 
 
 ---
 
@@ -144,26 +151,60 @@ There are more comprehensive tips and suggestions in `Tips_and_suggestions.md` i
 
 ## Fixing palindromes
 
-Before you start writing your own C code, we'll start by using valgrind
+Before you start writing your own C code, we'll start by using `valgrind`
 to identify memory leaks in an existing program. In the
 `palindrome` directory there is a program that
 determines (in sort of a dumb way) if a string is a palindrome. The file
 `palindrome.c` has the code that checks for palindromes and (instead of
 doing the more obvious thing of returning a boolean) returns the string
-"Yes" or "No". The file `palindrome_test.c` uses the CMockery library
-mentioned above to test that the `palindrome` function works. You should
-go into that `palindrome` directory in your project and compile the
+"Yes" or "No". The file `palindrome_test.cpp` uses the Google Test 
+(`gtest`) library
+mentioned above to test that the `palindrome` function works. 
+
+To run the tests you should
+go into the `palindrome` directory in your project and compile the
 program: 
+
 ```bash
-gcc -Wall -g -o palindrome_test palindrome.c palindrome_test.c ../lib/libcmockery_la-cmockery.o
+g++ -Wall -g -o palindrome_test palindrome_test.cpp palindrome.c -lgtest
 ```
+
 Run the resulting executable and
-verify that all six tests pass.
+verify that all the tests pass.
+
+If you want to run it "by hand" so you can type random things at it
+then compile `main`:
+
+```bash
+g++ -Wall -g -o main main.c palindrome.c
+```
+
+You can run this with `\.main` and then type lines of text. The program will
+then tell you whether each line you entered is or isn't a palindrome. You can
+use `^D` to end the input, or `^C` to kill the program. You can also run it
+on some "canned" input using `./main < sample_input.txt`.
 
 Look at the code a little and see if you can spot any obvious memory
-leaks. Then run `valgrind` on your executable and see what it tells you
+leaks. Then run `valgrind` on either your test executable
+
+```
+valgrind --leak-check=full ./palindrome_test
+```
+
+or the `main` executable, e.g.,
+
+```
+valgrind --leak-check=full ./main < sample_input.txt 
+```
+
+and see what it tells you
 about memory leaks in this code. Then go through and fix the memory
-leaks so that `valgrind` is happy (and the tests still pass).
+leaks so that `valgrind` is happy (and the tests still pass). As mentioned
+above, this might involve making changes to `palindrome.c`, or to `main.c`,
+or to `palindrome_test.cpp`, or some combination of the three files.
+
+The output of `valgrind` can be a bit overwhelming sometime, so definitely
+ask questions if you're not sure how to interpret what you're seeing.
 
 ## Disemvowel
 
