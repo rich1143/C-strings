@@ -3,5 +3,5 @@
 #include "disemvowel.h"
 
 char* disemvowel(char* str) {
-  return "";
+  return (char*) "";
 }
