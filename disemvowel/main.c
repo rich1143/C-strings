@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[]) {
   char* line;
-  int size;
+  size_t size;
   
   size = 100;
   line = (char*) malloc (size + 1);
