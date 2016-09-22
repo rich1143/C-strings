@@ -24,9 +24,9 @@ bool isvowel(char letter){
 
 char* disemvowel(char* str) {
 
-  int c;
+  unsigned int c;
   char* novowels;
-  novowels = calloc(strlen(str)+1, sizeof(char));
+  novowels = (char*) calloc(strlen(str)+1, sizeof(char));
 
   for (c = 0; c < strlen(str); ++c){
 
