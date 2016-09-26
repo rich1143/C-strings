@@ -26,16 +26,26 @@ char* disemvowel(char* str) {
 
   unsigned int c;
   char* novowels;
-  novowels = (char*) calloc(strlen(str)+1, sizeof(char));
+  unsigned int count;
+
+  for(c = 0; c < strlen(str); ++c){
+    count = 0;
+    if(!isvowel(str[c])){
+      ++count;
+    }
+  }
+
+  novowels = (char*) calloc(count+1, sizeof(char));
 
   for (c = 0; c < strlen(str); ++c){
 
-    if ( isalpha(str[c]) && !isvowel(str[c]) ){
+    if (!isvowel(str[c]) && !( str[c] == 0)){
       char cToStr[2];
       cToStr[0] = str[c];
       cToStr[1] = '\0';
       strcat( novowels, cToStr );
     }
   }
+  
   return novowels;
 }
