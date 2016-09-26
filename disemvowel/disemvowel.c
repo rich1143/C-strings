@@ -39,7 +39,7 @@ char* disemvowel(char* str) {
 
   for (c = 0; c < strlen(str); ++c){
 
-    if (!isvowel(str[c]) && !( str[c] == 0)){
+    if (!isvowel(str[c]) ){
       char cToStr[2];
       cToStr[0] = str[c];
       cToStr[1] = '\0';
